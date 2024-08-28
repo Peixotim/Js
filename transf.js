@@ -1,7 +1,7 @@
 function interact(e){
   // var player = e.source
   var player = e.player
-  var item = e.player.getInventoryHeldItem()
+  var item = e.player.getMainhandItem()
 
   var conversa = "§a§lSeu Tp foi setado bom aproveito!"
   var conversa2 = "§4§lVocê não possui o papel requisitado!"
