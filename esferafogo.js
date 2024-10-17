@@ -1,10 +1,10 @@
 var fireballDistance = 10;
-var fireballSpeed = 0.8; // Velocidade da bola de fogo
+var fireballSpeed = 1.6; // Velocidade da bola de fogo
 var maxDistance = 20;    // Distância percorida da esfera 
 var yaw, pitch;
 
 function interact(event) {
-    fireballDistance = 0; // Reseta a distância ao começar
+    fireballDistance = 2; // Reseta a distância ao começar
     yaw = event.npc.getRotation(); // Yaw do NPC
     pitch = event.npc.getPitch();  // Pitch do NPC
 
@@ -22,7 +22,7 @@ function spawnFireballSphere(world, centerX, centerY, centerZ, radius) {
             var x = r * Math.cos(j);
             var z = r * Math.sin(j);
             // Spawn da partícula de chama na posição calculada
-            world.spawnParticle("end_rod", centerX + x, centerY + y, centerZ + z, 0, 0, 0, 0, 0);  // Quantidade de Particula Spawnada
+            world.spawnParticle("flame", centerX + x, centerY + y, centerZ + z, 0, 0, 0, 0, 0);  // Quantidade de Particula Spawnada
         }
     }
 }
@@ -51,10 +51,10 @@ function timer(event) {
             var fireballZ = z + (dz * fireballDistance);
 
             // Gerar a bola de fogo como uma esfera de partículas
-            spawnFireballSphere(event.npc.world, fireballX, fireballY, fireballZ, 1.5); // Tamanho da esfera
+            spawnFireballSphere(event.npc.world, fireballX, fireballY, fireballZ, 0.2); // Tamanho da esfera
 
             // Detectar entidades no caminho da bola de fogo
-            var hitEntities = event.npc.world.getNearbyEntities(fireballX, fireballY, fireballZ, 1, 1);
+            var hitEntities = event.npc.world.getNearbyEntities(fireballX, fireballY, fireballZ, 1, 10);
             for (var i = 0; i < hitEntities.length; i++) {
                 hitEntities[i].damage(10); // Aplicar dano às entidades atingidas
             }
